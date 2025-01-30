@@ -54,6 +54,7 @@
 
         const retweetIconSelector = 'path[d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z"]'
         const retweetIcons = [...menuButton.closest("article").querySelectorAll(retweetIconSelector)];
+
         // if we have two retweet icons is because it's a retweet (the "you retweeted" on the post heaeder and the actual retweet icon).
         const isRetweet = retweetIcons.length === 2;
         if (!isRetweet) {
@@ -63,36 +64,48 @@
         }
 
         // Click outside so the opened menu closes
-        document.querySelector(".css-175oi2r.r-1p0dtai.r-1d2f490.r-1xcajam.r-zchlnj.r-ipm5af").click()
+        document.querySelector(".css-175oi2r.r-1p0dtai.r-1d2f490.r-1xcajam.r-zchlnj.r-ipm5af").click();
 
-        // The second one is the button
-        const retweetButton = retweetIcons[1].closest("div");
-        retweetButton.click();
+        setTimeout(() => {
 
-        const undoRetweetButton = [...document.querySelectorAll('div[role=menuitem] span')]
-          .find(div => div.innerText.includes("repost"))
+          // The second one is the button
+          const retweetButton = retweetIcons[1].closest("div");
+          retweetButton.click();
 
-        if (!undoRetweetButton) {
-          console.error('No encontré el botón de "Deshacer repost". Salteando al siguiente elemento.');
-          deleteNextTweet(index + 1, total, retries);
-          return;
-        }
+          const undoRetweetButton = [...document.querySelectorAll('div[role=menuitem] span')]
+            .find(div => div.innerText.includes("repost"))
 
-        undoRetweetButton.closest('div').click();
-        console.debug("Se deshizo el retwet. Continuando con el siguiente...");
-        deleteNextTweet(index + 1, total + 1);
+          if (!undoRetweetButton) {
+            console.error('No encontré el botón de "Deshacer repost". Salteando al siguiente elemento.');
+            deleteNextTweet(index + 1, total, retries);
+            return;
+          }
+
+          undoRetweetButton.closest('div').click();
+
+          setTimeout(() => {
+
+            console.debug("Se deshizo el retwet. Continuando con el siguiente...");
+            deleteNextTweet(index + 1, total + 1);
+
+          }, randomInteger(250, 1000));
+
+        }, randomInteger(250, 1000));
+
         return;
       }
 
       deleteOption.closest('div').click();
 
       setTimeout(() => {
+
         const deleteButton = [...document.querySelectorAll('button')]
           .find(div => div.innerText.includes("Eliminar"));
         deleteButton.click();
 
         console.debug("Tweet eliminado. Continuando con el siguiente...");
         deleteNextTweet(index + 1, total + 1);
+
       }, randomInteger(250, 1000));
 
     }, randomInteger(250, 1000));
