@@ -1,12 +1,12 @@
 (
   function deleteNextTweet(index = 0, total = 0, retries = 0, continueAfterRest = false) {
     const totalRetries = 10;
-    const restAfter = 30;
+    const restAfter = 100;
     // Rest mechanism for avoiding blocks
     console.debug("Continuar luego de descansar?", continueAfterRest, "Hay tweets eliminados?", total > 0, "Se eliminaron bastantes tweets", total > 0 && total % restAfter === 0);
     if (!continueAfterRest && total > 0 && total % restAfter === 0) {
       const restingSeconds = randomInteger(10, 30);
-      console.log(`Descansando ${restingSeconds} segundos antes de continuar...`);
+      console.warn(`Descansando ${restingSeconds} segundos antes de continuar...`);
       setTimeout(() => {
         deleteNextTweet(index, total, retries, true);
       }, restingSeconds * 1000);
@@ -25,6 +25,9 @@
 
       console.log("No se encontraron más botones. Esperando 2 segundos para reintentar...");
       setTimeout(() => {
+        // Scroll all the way down for avoiding get into a loop of finding just retweets
+        window.scrollTo(0, document.body.scrollHeight)
+
         deleteNextTweet(0, total, retries + 1);
       }, 2000);
       return;
@@ -32,7 +35,7 @@
 
     const menuButton = menuButtonCandidate.closest('div');
     if (!menuButton) {
-      console.warn("No encontré el botón del menú. Salteando al siguiente elemento.");
+      console.info("No encontré el botón del menú. Salteando al siguiente elemento.");
       deleteNextTweet(index + 1, total, retries);
       return;
     }
@@ -46,7 +49,7 @@
 
       // Maybe it's a retweet
       if (!deleteOption) {
-        console.warn("No encontré el botón de \"Eliminar\"... Posiblemente sea un retweet. Salteando al siguiente elemento.");
+        console.error("No encontré el botón de \"Eliminar\"... Posiblemente sea un retweet. Salteando al siguiente elemento.");
         deleteNextTweet(index + 1, total, retries);
         return;
       }
