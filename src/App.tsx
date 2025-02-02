@@ -1,7 +1,7 @@
-import trashIcon from "../public/img/trash.svg";
-import xLogo from "../public/img/x.svg";
-import githubLogo from "../public/img/github.svg";
-import blueskyLogo from "../public/img/bluesky.svg";
+import trashIcon from "./assets/trash.svg";
+import xLogo from "./assets/x.svg";
+import githubLogo from "./assets/github.svg";
+import blueskyLogo from "./assets/bluesky.svg";
 import "./App.css";
 
 function App() {
