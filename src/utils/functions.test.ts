@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { deleteNextTweet } from "./functions";
+import { deleteNextTweet } from "./functions.ts";
 
 describe("deleteNextTweet", () => {
   beforeEach(() => {

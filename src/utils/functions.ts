@@ -1,3 +1,13 @@
+// Tweet Menu button
+// document.querySelectorAll("article [data-testid='caret']")
+
+// Applies for answers too
+// Delete button - If you can pin the tweet, then the delete option is the first element in the menu
+// document.querySelector('[data-testid='Dropdown'] [role=menuitem][data-testid="pin"]').previousSibling
+
+// Unretweet
+// document.querySelectorAll("[data-testid='unretweet']")
+
 // @ts-nocheck
 export function deleteNextTweet(
   index = 0,
