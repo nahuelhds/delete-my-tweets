@@ -12,10 +12,15 @@ function App() {
   return (
     <>
       <img src={trashIcon} className="logo" alt="logo" />
-      <h1>Delete my tweets</h1>
-      <p>Go to your profile and then click the button</p>
+      <h1>Delete my tweets!</h1>
+      <p>
+        <a href={"https://x.com"} target={"_blank"}>
+          Go to X/Twitter
+        </a>
+        , then to your profile and finally click the button
+      </p>
       <div className="card">
-        <button onClick={handleClick}>Delete them all</button>
+        <button onClick={handleClick}>Start deleting</button>
       </div>
       <footer>
         by <strong>nahuelhds</strong>
