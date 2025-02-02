@@ -12,6 +12,7 @@
   "scripts": {
     "dev:debug": "vite",
     "dev": "vite",
+    "build:watch": "tsc -b && vite build --watch",
     "build": "tsc -b && vite build",
     "format": "npx prettier --check .",
     "format:fix": "npx prettier --write .",
