@@ -12,7 +12,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "format": "npx prettier --write .",
     "lint": "eslint .",
+    "lint:fix": "npx eslint --fix .",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"
