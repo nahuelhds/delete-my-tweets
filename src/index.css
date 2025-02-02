@@ -65,7 +65,7 @@ button:focus-visible {
 }
 
 footer{
-  font-size: .9rem;
+  font-size: 1em;
 }
 
 @media (prefers-color-scheme: light) {
