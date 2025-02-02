@@ -1,3 +1,4 @@
+// @ts-nocheck
 (function deleteNextTweet(index = 0, total = 0, retries = 0, continueAfterRest = false) {
 
   // Selectors. This may change in the near future.
