@@ -1,42 +1,42 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 .logo {
-    height: 6em;
-    will-change: filter;
+  height: 6em;
+  will-change: filter;
 }
 
 h1 {
-    margin: .25em;
+  margin: 0.25em;
 }
 
 .card {
-    padding: 2em;
+  padding: 2em;
 }
 
 .read-the-docs {
-    color: #888;
+  color: #888;
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 footer a {
-    color: #888;
-    padding: 1rem;
+  color: #888;
+  padding: 1rem;
 }
 
 footer img {
-    vertical-align: middle;
-    width: 1.5rem;
-    height: 100%;
-    margin: 0 .5rem;
+  vertical-align: middle;
+  width: 1.5rem;
+  height: 100%;
+  margin: 0 0.5rem;
 }
