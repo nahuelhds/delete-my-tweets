@@ -1,7 +1,7 @@
-import trashIcon from "./assets/trash.svg";
-import xLogo from "./assets/x.svg";
-import githubLogo from "./assets/github.svg";
-import blueskyLogo from "./assets/bluesky.svg";
+import trashIcon from "/img/trash.svg";
+import xLogo from "/img/x.svg";
+import githubLogo from "/img/github.svg";
+import blueskyLogo from "/img/bluesky.svg";
 import "./App.css";
 
 function App() {
@@ -24,15 +24,15 @@ function App() {
             href={"https://bsky.app/profile/nahuelhds.bsky.uy"}
             target={"_blank"}
           >
-            <img src={blueskyLogo} />
+            <img src={blueskyLogo} alt={"Bluesky"} />
             Bluesky
           </a>
           <a href={"https://github.com/nahuelhds"} target={"_blank"}>
-            <img src={xLogo} />
+            <img src={xLogo} alt={"X/Twitter"} />
             Twitter
           </a>
           <a href={"https://x.com/nahuelhds/delete-my-tweets"} target="_blank">
-            <img src={githubLogo} />
+            <img src={githubLogo} alt={"GitHub"} />
             GitHub
           </a>
         </p>
