@@ -8,18 +8,29 @@
     "type": "git",
     "url": "https://github.com/nahuelhds/delete-my-tweets.git"
   },
+  "type": "module",
   "scripts": {
-    "dev": "pkgroll --watch src/index.ts",
-    "build": "pkgroll src/index.ts",
-    "start:watch": "tsx watch src/index.ts",
-    "start": "tsx src/index.ts"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
     "chrome-types": "^0.1.335",
-    "pkgroll": "^2.6.1",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
-  },
-  "type": "module",
-  "exports": "./dist/index.mjs"
+    "eslint": "^9.19.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.21.0",
+    "vite": "^6.0.11"
+  }
 }
