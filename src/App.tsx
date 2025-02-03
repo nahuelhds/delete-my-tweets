@@ -3,10 +3,27 @@ import xLogo from "/img/x.svg";
 import githubLogo from "/img/github.svg";
 import blueskyLogo from "/img/bluesky.svg";
 import "./App.css";
+import { contentScript } from "./content.ts";
 
 function App() {
-  function handleClick() {
-    alert("Not implemented yet");
+  async function handleClick() {
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true,
+    });
+
+    if (!tab) {
+      return console.warn("No tab found");
+    }
+
+    if (!tab.id) {
+      return console.warn("Tab id is undefined. Cannot proceed");
+    }
+
+    void chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: contentScript,
+    });
   }
 
   return (
