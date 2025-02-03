@@ -9,37 +9,32 @@
 
 // Unretweet
 // document.querySelectorAll("[data-testid='unretweet']")
-export function contentScript() {
-  // TODO: try returning an object with these methods in order to be testable
-  execute();
-
-  function execute() {
-    if (!goToXProfilePage()) {
-      return;
-    }
-
-    alert("continue");
+export function run() {
+  if (!goToXProfilePage()) {
+    return;
   }
 
-  function goToXProfilePage() {
-    const profileLink = document.querySelector(
-      '[data-testid="AppTabBar_Profile_Link"]',
-    ) as HTMLAnchorElement | null;
+  alert("continue");
+}
 
-    if (!profileLink) {
-      console.warn("No profile link found. Are you on X/Twitter?");
-      return false;
-    }
+export function goToXProfilePage() {
+  const profileLink = document.querySelector(
+    '[data-testid="AppTabBar_Profile_Link"]',
+  ) as HTMLAnchorElement | null;
 
-    const username = profileLink.href.split("/").pop();
-
-    if (!confirm(`Confirm that you want to delete tweets from @${username}.`)) {
-      return false;
-    }
-
-    profileLink.click();
-    return true;
+  if (!profileLink) {
+    console.warn("No profile link found. Are you on X/Twitter?");
+    return false;
   }
+
+  const username = profileLink.href.split("/").pop();
+
+  if (!confirm(`Confirm that you want to delete tweets from @${username}.`)) {
+    return false;
+  }
+
+  profileLink.click();
+  return true;
 }
 
 export function deleteNextTweet(

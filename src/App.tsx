@@ -3,7 +3,6 @@ import xLogo from "/img/x.svg";
 import githubLogo from "/img/github.svg";
 import blueskyLogo from "/img/bluesky.svg";
 import "./App.css";
-import { contentScript } from "./content.ts";
 
 function App() {
   async function handleClick() {
@@ -13,7 +12,7 @@ function App() {
     });
 
     if (!tab) {
-      return console.warn("No tab found");
+      return console.warn("No tab found!");
     }
 
     if (!tab.id) {
@@ -22,7 +21,7 @@ function App() {
 
     void chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      func: contentScript,
+      files: ["lib/delete-tweets.js"],
     });
   }
 

@@ -5,6 +5,11 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
 
+  build: {
+    outDir: "dist",
+    emptyOutDir: false,
+  },
+
   test: {
     // Test configuration options
     globals: true, // Makes test APIs globally available
