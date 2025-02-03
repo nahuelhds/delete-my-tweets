@@ -9,11 +9,11 @@ describe("deleteNextTweet", () => {
       body: {
         scrollHeight: 1000,
       },
-    } as any;
+    } as unknown as Document;
 
     globalThis.window = {
       scrollTo: vi.fn(),
-    } as any;
+    } as unknown as Window & typeof globalThis;
 
     // Mock setTimeout
     vi.useFakeTimers();
@@ -60,34 +60,39 @@ describe("deleteNextTweet", () => {
   });
 
   it("should handle tweet deletion", () => {
-    // Mock DOM structure for a regular tweet
-    const mockMenuButton = {
-      closest: vi.fn().mockReturnValue({
-        scrollIntoView: vi.fn(),
-        click: vi.fn(),
-      }),
-    };
-
-    document.querySelectorAll = vi.fn().mockReturnValue([mockMenuButton]);
+    const closest = vi.fn().mockReturnValue({
+      scrollIntoView: vi.fn(),
+      click: vi.fn(),
+    });
 
     // Mock menu options
     document.querySelectorAll = vi
       .fn()
-      .mockReturnValueOnce([mockMenuButton]) // First call for menu button
+      .mockReturnValueOnce([{ closest }]) // First call for menu button
       .mockReturnValueOnce([
         {
           // Second call for menu options
           innerText: "Eliminar",
-          closest: vi.fn().mockReturnValue({
-            scrollIntoView: vi.fn(),
-            click: vi.fn(),
-          }),
+          closest,
         },
-      ]);
+      ])
+      .mockReturnValueOnce([
+        {
+          // Second call for menu options
+          innerText: "Eliminar",
+          scrollIntoView: vi.fn(),
+          click: vi.fn(),
+        },
+      ])
+      .mockRejectedValue([]);
+
+    document.querySelector = vi.fn().mockReturnValue({
+      scrollIntoView: vi.fn(),
+    });
 
     const consoleSpy = vi.spyOn(console, "warn");
 
-    deleteNextTweet();
+    deleteNextTweet(0, 0, 0); // Max retries
 
     // Fast-forward timers to trigger the deletion flow
     vi.runAllTimers();
