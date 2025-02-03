@@ -21,7 +21,7 @@ function App() {
 
     void chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ["lib/delete-tweets.js"],
+      files: ["lib/delete-tweets.iife.js"],
     });
   }
 

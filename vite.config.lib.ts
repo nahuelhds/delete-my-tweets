@@ -8,8 +8,7 @@ export default defineConfig({
   publicDir: false,
   build: {
     lib: {
-      entry: [resolve("src/lib/run.ts")],
-      fileName: () => `delete-tweets.js`,
+      entry: [resolve("src/content-script/delete-tweets.ts")],
       name: "delete-tweets.js",
       formats: ["iife"],
     },
